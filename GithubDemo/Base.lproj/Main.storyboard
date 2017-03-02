@@ -128,7 +128,13 @@
                             <constraint firstAttribute="trailing" secondItem="gq2-7O-JoS" secondAttribute="trailing" id="qlu-Tl-Duc"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="x5q-EH-pP8"/>
+                    <navigationItem key="navigationItem" id="x5q-EH-pP8">
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="kld-YC-Kxb">
+                            <connections>
+                                <segue destination="mjc-1R-nnP" kind="presentation" id="pl2-jN-9F5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="gq2-7O-JoS" id="R4b-xc-MB5"/>
                     </connections>
@@ -136,6 +142,84 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="818.39999999999998" y="-558.17091454272872"/>
+        </scene>
+        <!--Search Settings View Controller-->
+        <scene sceneID="zgH-bX-tRe">
+            <objects>
+                <viewController id="Uvd-19-fvA" customClass="SearchSettingsViewController" customModule="GithubDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mbq-Yo-PLD"/>
+                        <viewControllerLayoutGuide type="bottom" id="Y9M-Je-MgW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="C7p-HR-Bop">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zGf-Vq-e43">
+                                <rect key="frame" x="0.0" y="72" width="375" height="45"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minimum Stars" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V9y-FO-ifh">
+                                        <rect key="frame" x="8" y="12" width="135" height="24"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="99999" translatesAutoresizingMaskIntoConstraints="NO" id="eKj-8d-ClH">
+                                        <rect key="frame" x="184" y="9" width="118" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="114" id="f2Y-2M-DiC"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="sliderChanged:" destination="Uvd-19-fvA" eventType="valueChanged" id="Omb-Ps-1nG"/>
+                                        </connections>
+                                    </slider>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbh-de-WK4">
+                                        <rect key="frame" x="355" y="11" width="12" height="24"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="V9y-FO-ifh" firstAttribute="leading" secondItem="zGf-Vq-e43" secondAttribute="leading" constant="8" id="4e8-ne-guh"/>
+                                    <constraint firstAttribute="trailing" secondItem="qbh-de-WK4" secondAttribute="trailing" constant="8" id="6tL-Rh-Ob8"/>
+                                    <constraint firstItem="qbh-de-WK4" firstAttribute="top" secondItem="zGf-Vq-e43" secondAttribute="top" constant="11" id="GOn-Zp-KJL"/>
+                                    <constraint firstItem="qbh-de-WK4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eKj-8d-ClH" secondAttribute="trailing" constant="10" id="Uhu-dd-HUV"/>
+                                    <constraint firstItem="eKj-8d-ClH" firstAttribute="top" secondItem="zGf-Vq-e43" secondAttribute="top" constant="9" id="V88-7F-hRq"/>
+                                    <constraint firstItem="eKj-8d-ClH" firstAttribute="leading" secondItem="V9y-FO-ifh" secondAttribute="trailing" constant="43" id="ZBi-eX-mGp"/>
+                                    <constraint firstAttribute="height" constant="45" id="aRf-Bg-vGv"/>
+                                    <constraint firstItem="V9y-FO-ifh" firstAttribute="top" secondItem="zGf-Vq-e43" secondAttribute="top" constant="12" id="twc-0o-P5o"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="zGf-Vq-e43" secondAttribute="trailing" id="48v-sE-Qv6"/>
+                            <constraint firstItem="zGf-Vq-e43" firstAttribute="leading" secondItem="C7p-HR-Bop" secondAttribute="leading" id="FLD-Op-sQP"/>
+                            <constraint firstItem="zGf-Vq-e43" firstAttribute="top" secondItem="mbq-Yo-PLD" secondAttribute="bottom" constant="8" id="cDO-Qn-Zr0"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ZG0-0E-elZ">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="2ek-Lb-aLH">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="Uvd-19-fvA" id="qR2-XY-rEF"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="84x-vc-vQj">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="Uvd-19-fvA" id="qdZ-Yy-cWN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="slider" destination="eKj-8d-ClH" id="nLp-9P-a2W"/>
+                        <outlet property="starsCountLabel" destination="qbh-de-WK4" id="GTy-xu-rfJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nH0-zY-Lon" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2476" y="-559.07046476761627"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FpP-oR-azb">
@@ -154,6 +238,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dru-y2-L7C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="132" y="-557"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="kCD-pH-yA3">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mjc-1R-nnP" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aEX-oM-8p5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Uvd-19-fvA" kind="relationship" relationship="rootViewController" id="IkO-PC-0pf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pH9-3U-Td6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1536.8" y="-559.07046476761627"/>
         </scene>
     </scenes>
     <resources>

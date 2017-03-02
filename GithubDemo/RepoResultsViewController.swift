@@ -10,7 +10,7 @@ import UIKit
 import MBProgressHUD
 
 // Main ViewController
-class RepoResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class RepoResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SettingsPresentingViewControllerDelegate {
 
     var searchBar: UISearchBar!
     var searchSettings = GithubRepoSearchSettings()
@@ -18,6 +18,7 @@ class RepoResultsViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var tableView: UITableView!
     var repos = [GithubRepo]()
     var filteredRepos = [GithubRepo]()
+    var settings = GithubRepoSearchSettings()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,6 +87,35 @@ class RepoResultsViewController: UIViewController, UITableViewDelegate, UITableV
         
         tableView.reloadData()
     }
+    
+    func didSaveSettings(settings: GithubRepoSearchSettings) {
+        self.settings = settings
+        
+        GithubRepo.fetchRepos(settings, successCallback: { (newRepos) -> Void in
+            
+            // Print the returned repositories to the output window
+            self.filteredRepos = newRepos
+            self.tableView.reloadData()
+            
+            MBProgressHUD.hide(for: self.view, animated: true)
+        }, error: { (error) -> Void in
+            print(error)
+        })
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func didCancelSettings() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let navController = segue.destination as! UINavigationController
+        let vc = navController.topViewController as! SearchSettingsViewController
+        vc.delegate = self
+        vc.settings = settings
+    }
+    
 }
 
 // SearchBar methods
